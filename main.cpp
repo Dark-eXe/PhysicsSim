@@ -5,26 +5,17 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+#include "gravity.h"
+
 int main()
 {
-    std::cout << "Hello world";
-
-    if (!glfwInit())
-    {
-        std::cerr << "Failed to initialize GLFW\n";
-        return -1;
-    }
-
-    GLFWwindow *window = glfwCreateWindow(800, 600, "OpenGL Window", NULL, NULL);
+    GLFWwindow *window = StartGLFW();
     if (!window)
     {
         std::cerr << "Failed to create GLFW window\n";
         glfwTerminate();
         return -1;
     }
-
-    glfwMakeContextCurrent(window);
-    glewInit();
 
     while (!glfwWindowShouldClose(window))
     {
@@ -34,6 +25,5 @@ int main()
     }
 
     glfwTerminate();
-
     return 0;
 }
