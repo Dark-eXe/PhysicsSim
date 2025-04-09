@@ -12,20 +12,6 @@ int main()
 {
     // Create GLFW window
     GLFWwindow *window = StartGLFW();
-    if (!window)
-    {
-        std::cerr << "Failed to create GLFW window\n";
-        glfwTerminate();
-        return -1;
-    }
-    glfwMakeContextCurrent(window);
-    glewInit();
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    glOrtho(0.0, Constants::WINDOW_WIDTH, 0.0, Constants::WINDOW_HEIGHT, -1.0, 1.0);
-    glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
-    glClearColor(0.1f, 0.1f, 0.1f, 1.0f); // dark gray background
 
     // Circle
     float centerX = Constants::WINDOW_WIDTH / 2.0f;
