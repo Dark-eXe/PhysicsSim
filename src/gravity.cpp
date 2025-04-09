@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include "gravity.h"
+#include "constants.h"
 
 GLFWwindow *StartGLFW()
 {
@@ -11,7 +12,7 @@ GLFWwindow *StartGLFW()
         return nullptr;
     }
 
-    GLFWwindow *window = glfwCreateWindow(800, 600, "gravity_sim", NULL, NULL);
+    GLFWwindow *window = glfwCreateWindow(Constants::WINDOW_WIDTH, Constants::WINDOW_HEIGHT, "gravity_sim", NULL, NULL);
 
     return window;
 }
