@@ -23,6 +23,10 @@ int main()
     std::vector<float> position = {centerX, centerY};
     std::vector<float> velocity = {0.0f, 0.0f};
 
+    // Frames
+    float deltaTime = 0.0f;
+    float lastFrame, currentFrame = 0.0f;
+
     // Run GLFW window
     while (!glfwWindowShouldClose(window))
     {
@@ -31,16 +35,40 @@ int main()
         // Circle
         DrawCircle(position[0], position[1], radius = radius, res = res);
 
+        // Frames
+        while (glfwGetTime() - currentFrame < 1.0 / 60.0) // cap frame rate to 60 fps
+        {
+        }
+        currentFrame = glfwGetTime();
+        deltaTime = currentFrame - lastFrame;
+        lastFrame = currentFrame;
+
         // Vector Updates with Time
-        position[0] += velocity[0];
-        position[1] += velocity[1];
-        velocity[1] += -9.81 / 20.0f;
+        velocity[1] += -Constants::GRAVITY * deltaTime;
+        position[0] += velocity[0] * deltaTime * Constants::PIXELS_PER_METER;
+        position[1] += velocity[1] * deltaTime * Constants::PIXELS_PER_METER;
 
         // Border Collision
-        if (position[1] < 0 || position[1] > Constants::WINDOW_HEIGHT)
+        if (position[1] - radius < 0) // vertical
+        {
+            position[1] = radius;
             velocity[1] *= -0.95f;
-        if (position[0] < 0 || position[0] > Constants::WINDOW_WIDTH)
+        }
+        else if (position[1] + radius > Constants::WINDOW_HEIGHT)
+        {
+            position[1] = Constants::WINDOW_HEIGHT - radius;
+            velocity[1] *= -0.95f;
+        }
+        if (position[0] - radius < 0) // horizontal
+        {
+            position[0] = radius;
             velocity[0] *= -0.95f;
+        }
+        else if (position[0] + radius > Constants::WINDOW_WIDTH)
+        {
+            position[0] = Constants::WINDOW_WIDTH - radius;
+            velocity[0] *= -0.95f;
+        }
 
         glfwSwapBuffers(window);
         glfwPollEvents();

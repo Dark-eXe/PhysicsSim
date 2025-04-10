@@ -13,6 +13,7 @@ namespace Constants
     // Main
     constexpr float WINDOW_WIDTH = 800.0f;
     constexpr float WINDOW_HEIGHT = 600.0f;
+    constexpr float PIXELS_PER_METER = 100.0f; // 100 pixels = 1 meter
 }
 
 #endif
