@@ -26,3 +26,17 @@ GLFWwindow *StartGLFW()
 
     return window;
 }
+
+void DrawCircle(float centerX, float centerY, float radius, int res)
+{
+    glBegin(GL_TRIANGLE_FAN);
+    glVertex2d(centerX, centerY);
+    for (int i = 0; i <= res; ++i)
+    {
+        float angle = 2.0f * Constants::PI * (static_cast<float>(i) / res);
+        float x = centerX + cos(angle) * radius;
+        float y = centerY + sin(angle) * radius;
+        glVertex2d(x, y);
+    }
+    glEnd();
+}

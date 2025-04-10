@@ -19,22 +19,17 @@ int main()
     float radius = 50.0f;
     int res = 100;
 
+    // Position
+    std::vector<float> position = {centerX, centerY};
+
     // Run GLFW window
     while (!glfwWindowShouldClose(window))
     {
         glClear(GL_COLOR_BUFFER_BIT);
 
         // Circle
-        glBegin(GL_TRIANGLE_FAN);
-        glVertex2d(centerX, centerY);
-        for (int i = 0; i <= res; ++i)
-        {
-            float angle = 2.0f * Constants::PI * (static_cast<float>(i) / res);
-            float x = centerX + cos(angle) * radius;
-            float y = centerY + sin(angle) * radius;
-            glVertex2d(x, y);
-        }
-        glEnd();
+        DrawCircle(position[0], position[1], radius = radius, res = res);
+        position[1] -= 0.5f;
 
         glfwSwapBuffers(window);
         glfwPollEvents();
