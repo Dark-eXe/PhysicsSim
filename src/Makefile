@@ -11,7 +11,7 @@ CXXFLAGS = -std=c++17 -isysroot $(SYSROOT) -I/opt/homebrew/include
 LDFLAGS = -L/opt/homebrew/lib -lglew -lglfw -framework OpenGL
 
 # Source files
-SRC = main.cpp gravity.cpp
+SRC = main.cpp gravity.cpp Object.cpp
 
 # Output binary
 OUT = main
