@@ -23,7 +23,7 @@ int main()
     float centerY = Constants::WINDOW_HEIGHT;
 
     std::vector<Object> objs = {
-        Object(std::vector<float>{centerX / 2, centerY}, std::vector<float>{0.0f, 0.0f}, 50.0f),
+        Object(std::vector<float>{centerX / 2, centerY}, std::vector<float>{0.0f, 0.0f}, 50.0f), // position, velocity, radius
         Object(std::vector<float>{centerX * 3 / 2, centerY}, std::vector<float>{0.0f, 0.0f}, 50.0f)};
 
     // Run GLFW window
@@ -36,7 +36,7 @@ int main()
 
         for (auto &obj : objs)
         {
-            obj.accelerate(5.0f, -Constants::GRAVITY, deltaTime);
+            obj.accelerate(5.0f, -Constants::GRAVITY, deltaTime); // x, y, time
             obj.updatePos(deltaTime);
             obj.drawCircle();
 
